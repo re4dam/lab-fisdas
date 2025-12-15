@@ -37,5 +37,5 @@ php artisan migrate
 Kalau databasenya udah ada, bisa pakai perintah ini untuk menghapus dan membuat ulang tabel:
 
 ```
-php artisan migrate:fresh
+php artisan migrate:fresh --seed
 ```
