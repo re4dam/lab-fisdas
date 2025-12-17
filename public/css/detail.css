@@ -1,0 +1,448 @@
+.nav-link {
+    color: #e31e24;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+.nav-link.active {
+    font-weight: 700;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles - NAV TENGAH, LOGO KIRI */
+.header {
+    background-color: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 0;
+    position: relative;
+    width: 100%;
+}
+
+.header .container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    position: relative;
+    max-width: 100%;
+    padding: 0 40px;
+}
+
+.logo {
+    flex-shrink: 0;
+    justify-self: start;
+    padding-left: 0;
+}
+
+.nav {
+    display: flex;
+    gap: clamp(15px, 3vw, 40px);
+    align-items: center;
+    justify-content: center;
+    grid-column: 2;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+}
+
+.nav-link {
+    color: #e31e24;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+.nav-link.active {
+    font-weight: 700;
+}
+
+/* Main Content */
+.main-content {
+    padding: 40px 0 0 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Title */
+.title {
+    color: #e31e24;
+    font-size: 65px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+/* Neraca Container */
+.neraca-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.neraca-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 600px;
+}
+
+/* Numbered Points */
+.point {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: #ffffff;
+    border: 3px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.point:hover {
+    transform: scale(1.1);
+    background-color: #e31e24;
+    color: #ffffff;
+    border-color: #e31e24;
+}
+
+/* Point Positions - Sesuaikan dengan gambar */
+.point-1 {
+    bottom: 15%;
+    left: 15%;
+}
+
+.point-2 {
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.point-3 {
+    bottom: 25%;
+    right: 20%;
+}
+
+/* Detail Section - MENTOK KE BAWAH DAN SAMPING TANPA JARAK, POJOK KANAN TUMPUL */
+.detail-section {
+    background: linear-gradient(135deg, #e31e24 0%, #c01a1f 100%);
+    border-radius: 30px 30px 0 0;
+    padding: 50px 20px 60px 20px;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(227, 30, 36, 0.3);
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    margin-top: 40px;
+    margin-left: calc(-50vw + 50%);
+    margin-bottom: 0;
+    padding-bottom: 0;
+    min-height: calc(100vh - 400px);
+}
+
+/* Container khusus untuk konten di dalam detail-section */
+.detail-section .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px 20px;
+}
+
+.detail-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.detail-content {
+    line-height: 1.9;
+}
+
+.description {
+    margin-bottom: 35px;
+    text-align: justify;
+    font-size: 25px;
+}
+
+.parts-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* Parts List */
+.parts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.part-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.part-number {
+    width: 45px;
+    height: 45px;
+    background-color: #ffffff;
+    color: #e31e24;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 25px;
+    flex-shrink: 0;
+}
+
+.part-description {
+    flex: 1;
+    font-size: 25px;
+    line-height: 1.7;
+}
+
+.part-description strong {
+    font-weight: 700;
+    font-size: 25px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header .container {
+        padding: 0 15px;
+        gap: clamp(15px, 4vw, 50px);
+    }
+
+    .nav {
+        gap: clamp(12px, 2.5vw, 30px);
+    }
+
+    .nav-link {
+        font-size: 13px;
+    }
+
+    .logo-img {
+        height: 40px;
+    }
+
+    .title {
+        font-size: 42px;
+    }
+
+    .detail-section {
+        padding: 35px 15px 50px 15px;
+        border-radius: 25px 25px 0 0;
+    }
+
+    .detail-section .content-container {
+        padding: 0 15px 50px 15px;
+    }
+
+    .detail-title {
+        font-size: 32px;
+        margin-bottom: 25px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    .parts-title {
+        font-size: 22px;
+    }
+
+    .part-description {
+        font-size: 15px;
+    }
+
+    .part-description strong {
+        font-size: 16px;
+    }
+
+    .part-item {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .point {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .neraca-container {
+        margin: 0 auto 30px;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header .container {
+        gap: clamp(10px, 3vw, 30px);
+    }
+
+    .nav {
+        gap: clamp(8px, 2vw, 20px);
+    }
+
+    .nav-link {
+        font-size: 12px;
+    }
+
+    .logo-img {
+        height: 35px;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+
+    .detail-section {
+        padding: 30px 10px 40px 10px;
+        border-radius: 20px 20px 0 0;
+    }
+
+    .detail-section .content-container {
+        padding: 0 10px 40px 10px;
+    }
+
+    .detail-title {
+        font-size: 28px;
+    }
+
+    .description {
+        font-size: 15px;
+    }
+
+    .parts-title {
+        font-size: 20px;
+    }
+
+    .part-description {
+        font-size: 14px;
+    }
+
+    .part-description strong {
+        font-size: 15px;
+    }
+
+    .part-item {
+        gap: 12px;
+    }
+
+    .part-number {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    .header .container {
+        gap: clamp(8px, 2vw, 20px);
+    }
+
+    .nav {
+        gap: clamp(6px, 1.5vw, 15px);
+    }
+
+    .nav-link {
+        font-size: 11px;
+    }
+
+    .logo-img {
+        height: 30px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.detail-section {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.part-item {
+    animation: fadeIn 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.part-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.part-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.part-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
