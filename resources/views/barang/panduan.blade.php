@@ -1,99 +1,84 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neraca - Panduan Penggunaan</title>
+    {{-- DINAMIS: Judul Tab --}}
+    <title>{{ $barang->nama_barang }} - Panduan Penggunaan</title>
+
     <link rel="stylesheet" href="{{ asset('css/panduan.css') }}">
 </head>
+
 <body>
-    <!-- Header Navigation -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="logo.png" alt="Logo" class="logo-img">
+                <img src="{{ asset('logo.png') }}" alt="Logo" class="logo-img" onerror="this.style.display='none'">
             </div>
             <nav class="nav">
-                <a href="#" class="nav-link">Detail Barang</a>
-                <a href="#" class="nav-link">Panduan Keselamatan</a>
-                <a href="#" class="nav-link active">Panduan Penggunaan</a>
+                {{-- Pastikan nama route sesuai dengan web.php --}}
+                <a href="{{ route('barang.show', $barang->id_barang) }}" class="nav-link">Detail Barang</a>
+
+                <a href="{{ route('barang.keselamatan', $barang->id_barang) }}" class="nav-link">Panduan Keselamatan</a>
+
+                {{-- Link Aktif --}}
+                <a href="{{ route('barang.panduan', $barang->id_barang) }}" class="nav-link active">Panduan
+                    Penggunaan</a>
             </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="main-content">
-        <!-- SATU CONTAINER PUTIH BESAR -->
         <section class="panduan-section">
             <div class="main-white-container">
-                
-                <!-- Hero Section: Title & Image Side by Side -->
+
                 <div class="hero-grid">
                     <div class="hero-text">
                         <h1 class="hero-title">Panduan Penggunaan</h1>
-                        <h2 class="hero-subtitle">NERACA</h2>
+                        {{-- DINAMIS: Nama Barang --}}
+                        <h2 class="hero-subtitle">{{ strtoupper($barang->nama_barang) }}</h2>
                     </div>
                     <div class="hero-image">
-                        <img src="neraca-image.png" alt="Neraca" class="neraca-image">
+                        {{-- DINAMIS: Gambar Barang --}}
+                        <img src="{{ asset('images/' . $barang->gambar) }}" alt="{{ $barang->nama_barang }}"
+                            class="neraca-image">
                     </div>
                 </div>
 
-                <!-- Section 1: Persiapan dan Kalibrasi -->
-                <div class="guide-section">
-                    <h3 class="section-title">Persiapan dan Kalibrasi (Mengatur ke Nol)</h3>
-                    <div class="cards-wrapper">
-                        <div class="step-card">
-                            <div class="step-number">1</div>
-                            <p class="step-text">Basar semua anak timbangan (rider) pada kedua lengan hingga posisinya ada di nol (0), yaitu paling kiri.</p>
-                        </div>
-                        <div class="step-card">
-                            <div class="step-number">2</div>
-                            <p class="step-text">Perhatikan jarum penunjuk di ujung kanan neraca. Pastikan jarum berada di tengah skala atau tepat di nol.</p>
-                        </div>
-                        <div class="step-card">
-                            <div class="step-number">3</div>
-                            <p class="step-text">Jika jarum tidak berada di nol, putar sekrup pengatur (biasanya di ujung kiri neraca) hingga jarum tepat berada di tengah skala nol.</p>
-                        </div>
-                    </div>
-                </div>
+                @forelse($barang->panduanPenggunaan as $fase)
 
-                <!-- Section 2: Pengukuran Massa -->
-                <div class="guide-section">
-                    <h3 class="section-title">Pengukuran Massa</h3>
-                    <div class="cards-wrapper">
-                        <div class="step-card">
-                            <div class="step-number">1</div>
-                            <p class="step-text">Tempatkan benda yang akan diukur massanya di atas piringan (pan).</p>
-                        </div>
-                        <div class="step-card">
-                            <div class="step-number">2</div>
-                            <p class="step-text">Geser anak timbangan (rider) terlebih dahulu pada lengan belakang (yang memiliki angka skala lebih besar). Geser perlahan hingga jarum mendekati nol, tapi jangan sampai melebihi nol.</p>
-                        </div>
-                        <div class="step-card">
-                            <div class="step-number">3</div>
-                            <p class="step-text">Ulangi proses yang sama pada lengan depan (dengan skala lebih kecil). Geser hingga jarum berada tepat di tengah atau di nol.</p>
-                        </div>
-                    </div>
-                </div>
+                    <div class="guide-section">
+                        {{-- Judul Fase (Contoh: "Persiapan dan Kalibrasi") --}}
+                        <h3 class="section-title">{{ $fase->tahap_penggunaan }}</h3>
 
-                <!-- Section 3: Pembacaan Hasil -->
-                <div class="guide-section">
-                    <h3 class="section-title">Pembacaan Hasil</h3>
-                    <div class="cards-wrapper">
-                        <div class="step-card">
-                            <div class="step-number">1</div>
-                            <p class="step-text">Tempatkan benda yang akan diukur massanya di atas piringan (pan).</p>
-                        </div>
-                        <div class="step-card">
-                            <div class="step-number">2</div>
-                            <p class="step-text">Geser anak timbangan (rider) pada lengan belakang hingga jarum mendekati nol, tapi tidak sampai melebihi nol.</p>
-                        </div>
-                        <div class="step-card">
-                            <div class="step-number">3</div>
-                            <p class="step-text">Ulangi proses yang sama pada lengan depan hingga jarum berada tepat di tengah skala. Baca angka di kedua lengan dan jumlahkan.</p>
+                        <div class="cards-wrapper">
+
+                            {{--
+                               DINAMIS LOOPING DALAM:
+                               Loop Dalam untuk LANGKAH DETAIL pada fase tersebut
+                            --}}
+                            @foreach ($fase->penggunaanDetail as $detail)
+                                <div class="step-card">
+                                    {{-- Nomor urut langkah (1, 2, 3...) reset setiap ganti fase --}}
+                                    <div class="step-number">{{ $loop->iteration }}</div>
+
+                                    {{-- Isi deskripsi langkah --}}
+                                    <p class="step-text">{{ $detail->deskripsi_penggunaan }}</p>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
-                </div>
+
+                @empty
+                    {{-- Tampilan jika belum ada data panduan sama sekali --}}
+                    <div class="guide-section">
+                        <p style="text-align: center; padding: 20px;">
+                            Belum ada panduan penggunaan tersedia untuk alat ini.
+                        </p>
+                    </div>
+                @endforelse
 
             </div>
         </section>
@@ -101,4 +86,5 @@
 
     <script src="{{ asset('js/panduan.js') }}"></script>
 </body>
+
 </html>

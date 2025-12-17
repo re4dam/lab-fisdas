@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neraca - Detail Barang</title>
+    <title>{{ $barang->nama_barang }}- Detail Barang</title>
     <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 </head>
+
 <body>
     <!-- Header Navigation -->
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="logo.png" alt="Logo" class="logo-img">
+                <img src="{{ asset('logo.png') }}" alt="Logo" class="logo-img">
             </div>
             <nav class="nav">
-                <a href="#" class="nav-link active">Detail Barang</a>
-                <a href="#" class="nav-link">Panduan Penggunaan</a>
-                <a href="#" class="nav-link">Panduan Keselamatan</a>
+                <a href="{{ route('barang.show', $barang->id_barang) }}" class="nav-link active">Detail Barang</a>
+                <a href="{{ route('barang.keselamatan', $barang->id_barang) }}" class="nav-link">Panduan
+                    Keselamatan</a>
+                <a href="{{ route('barang.panduan', $barang->id_barang) }}" class="nav-link">Panduan
+                    Penggunaan</a>
             </nav>
         </div>
     </header>
@@ -25,7 +29,7 @@
     <main class="main-content">
         <div class="container">
             <!-- Title -->
-            <h1 class="title">NERACA</h1>
+            <h1 class="title">{{ $barang->nama_barang }} - Detail Barang</h1>
 
             <!-- Neraca Image with Numbered Points -->
             <div class="neraca-container">
@@ -40,35 +44,26 @@
             <div class="detail-section">
                 <div class="content-container">
                     <h2 class="detail-title">Detail Barang</h2>
-                    
+
                     <div class="detail-content">
                         <p class="description">
-                            Mengukur massa suatu benda dengan tingkat ketelitian yang relatif tinggi di laboratorium. Memiliki prinsip keseimbangan, di mana massa diukur dengan menggeser tiga buah anak timbangan (atau beban geser) pada lengan dengan skala hingga tercapai posisi seimbang (nol). Umumnya dapat mengukur hingga masa 610 gram, tergantung model.
+                            {{ $barang->deskripsi }}
                         </p>
 
                         <h3 class="parts-title">Bagian - Bagian :</h3>
 
                         <div class="parts-list">
-                            <div class="part-item">
-                                <div class="part-number">1</div>
-                                <div class="part-description">
-                                    <strong>Piringan/Wadah (Pan):</strong> Tempat meletakkan benda yang akan diukur massanya.
+                            @forelse($barang->komponen as $komponen)
+                                <div class="part-item">
+                                    <div class="part-number">{{ $loop->iteration }}</div>
+                                    <div class="part-description">
+                                        <strong>{{ $komponen->nama_komponen }}</strong>
+                                        {{ $komponen->deskripsi }}
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="part-item">
-                                <div class="part-number">2</div>
-                                <div class="part-description">
-                                    <strong>Tiga Lengan (Beams):</strong> Skala tempat anak timbangan digeser, biasanya mewakili ratusan gram, puluhan gram, dan satuan gram/desimal.
-                                </div>
-                            </div>
-
-                            <div class="part-item">
-                                <div class="part-number">3</div>
-                                <div class="part-description">
-                                    <strong>Pointers:</strong> Menunjukkan apakah neraca sudah seimbang (nol) atau belum.
-                                </div>
-                            </div>
+                            @empty
+                                <p>Belum ada data komponen untuk alat ini.</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -78,4 +73,5 @@
 
     <script src="{{ asset('js/detail.js') }}"></script>
 </body>
+
 </html>
