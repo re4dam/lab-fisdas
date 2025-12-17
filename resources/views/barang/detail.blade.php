@@ -13,7 +13,10 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="{{ asset('logo.png') }}" alt="Logo" class="logo-img">
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('logo.png') }}" alt="Logo" class="logo-img"
+                        onerror="this.style.display='none'">
+                </a>
             </div>
             <nav class="nav">
                 <a href="{{ route('barang.show', $barang->id_barang) }}" class="nav-link active">Detail Barang</a>
