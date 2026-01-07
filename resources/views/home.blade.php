@@ -60,8 +60,7 @@
                         style="text-decoration: none; color: inherit;">
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="https://images.pexels.com/photos/6975474/pexels-photo-6975474.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
-                                    width="974" height="650"
+                                <img src="{{ asset($item->gambar) }}" width="974" height="650"
                                     alt="Top view of crop anonymous barefoot female measuring weight on scales on white background">
                             </div>
                             <div class="product-label">{{ $item->nama_barang }}</div>

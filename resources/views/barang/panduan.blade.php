@@ -44,8 +44,7 @@
                     </div>
                     <div class="hero-image">
                         {{-- DINAMIS: Gambar Barang --}}
-                        <img src="{{ asset('images/' . $barang->gambar) }}" alt="{{ $barang->nama_barang }}"
-                            class="neraca-image">
+                        <img src="{{ asset($barang->gambar) }}" alt="{{ $barang->nama_barang }}" class="neraca-image">
                     </div>
                 </div>
 

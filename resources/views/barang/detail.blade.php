@@ -36,7 +36,7 @@
 
             <!-- Neraca Image with Numbered Points -->
             <div class="neraca-container">
-                <img src="neraca-image.png" alt="Neraca" class="neraca-image">
+                <img src="{{ asset($barang->gambar) }}" alt="Neraca" class="neraca-image">
                 <div class="point point-1">1</div>
                 <div class="point point-2">2</div>
                 <div class="point point-3">3</div>
